@@ -1,0 +1,10 @@
+[project]
+name = "ets-consumption-model"
+version = "0.1.0"
+description = "ETS (exponential smoothing) monthly consumption model for CHAP"
+requires-python = ">=3.10"
+dependencies = [
+    "numpy",
+    "pandas",
+    "statsmodels",
+]

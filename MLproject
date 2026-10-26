@@ -1,0 +1,32 @@
+name: ets_consumption
+
+uv_env: pyproject.toml
+
+target: consumption
+domain: health_supply
+required_covariates:
+  - stock_on_hand
+supported_period_type: month
+
+meta_data:
+  display_name: ETS consumption
+  description: >
+    Exponential smoothing (ETS) per location, choosing by AIC between level-only, damped trend
+    and, with at least two years of data, additive seasonal models. Probabilistic forecasts are
+    simulated sample paths. Missing entries and stock-out months are interpolated before fitting.
+  author: CHAP health_supply PoC
+  author_assessed_status: red
+
+entry_points:
+  train:
+    parameters:
+      train_data: str
+      model: str
+    command: "python train.py {train_data} {model}"
+  predict:
+    parameters:
+      historic_data: str
+      future_data: str
+      model: str
+      out_file: str
+    command: "python predict.py {model} {historic_data} {future_data} {out_file}"
